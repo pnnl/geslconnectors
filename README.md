@@ -41,3 +41,14 @@ end
 The Visual Studio solution consists of two projects:
 - `sig_lib` - A library (DLL) that includes functions to interact with the GESL API.
 - `siglib_demo` - A demo project showing how to use the library functions.
+
+### MATLAB
+
+The MATLAB folder includes a set of functions:
+
+- `get_event_tags.m` - Retrieves tags associated with events.
+- `get_event_ids.m` - Obtains IDs for specific events.
+- `get_event_data.m` - Fetches data for given event IDs.
+- `request_data.m` - Sends a request for data based on specified parameters.
+
+To test the functionality of the MATLAB connectors, run `test_api.m`. This script identifies events for specific tags, downloads them as ZIP files, extracts CSV files from the archives, and generates a plot.
