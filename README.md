@@ -5,7 +5,9 @@ Welcome to GESL_connectors! This tool allows you to seamlessly integrate GESL's 
 ## Getting Started
 
 ### Registration
-First, register at [GESL](https://gsl.ornl.gov/) to obtain your API key. This key will enable you to access our suite of APIs.
+First, register at [GESL](https://gsl.ornl.gov/) to obtain your API key. This key will enable you to access GESL APIs.
+
+
 
 ### Configuration
 
@@ -33,3 +35,9 @@ function cfg = config()
     cfg.apikey = 'your API key';   
 end
 ```
+
+## Description of the connectors
+### C#
+The Visual Studio solution consists of two projects:
+- `sig_lib` - A library (DLL) that includes functions to interact with the GESL API.
+- `siglib_demo` - A demo project showing how to use the library functions.
