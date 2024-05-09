@@ -12,20 +12,20 @@ namespace sig_lib
     {
         static void Main(string[] args)
         {
-            // Set these variables
+            
             string email = siglib_config.email;
             string apikey = siglib_config.apikey;
             string proxy = siglib_config.proxy;
 
-            // For Event Tags
+            // Get Event Tags
             string AllTags = Sig_Lib.GetEventTags(email, apikey, proxy);
 
             Console.WriteLine("Event Tags:");
             Console.WriteLine(AllTags);
 
             // find tags
-            var tagsToFind = new List<string> { "Generator", "Transmission", "On" };
-            var requiredAncestorTags = new HashSet<string> { "Equipment" };
+            //var tagsToFind = new List<string> { "Generator", "Transmission", "On" };
+            //var requiredAncestorTags = new HashSet<string> { "Equipment" };
 
             
 
@@ -85,7 +85,7 @@ namespace sig_lib
                         if (entry.FullName.EndsWith(".csv", StringComparison.OrdinalIgnoreCase))
                         {
                             string destinationPath = Path.Combine(csvFolder, entry.FullName);
-                            entry.ExtractToFile(destinationPath, overwrite: true); // Set overwrite based on your needs
+                            entry.ExtractToFile(destinationPath, overwrite: true); 
                         }
                     }
                 }

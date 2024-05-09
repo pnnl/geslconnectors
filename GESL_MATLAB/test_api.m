@@ -12,7 +12,7 @@ alltags = get_event_tags(email, apikey, url);
 
 
 % Find tag IDs
-tagsToFind = {'Generator', 'Transmission', 'On'};
+tagsToFind = {'Generator', 'Transmission', 'On', 'Arc Furnace'};
 requiredAncestorTags = {'Equipment'};
 foundTags = find_ids_by_tags(alltags, tagsToFind, requiredAncestorTags);
 
@@ -22,16 +22,20 @@ allIds = [];
 disp('Results for find_ids_by_tags:');
 for i = 1:length(tagsToFind)
     tag = tagsToFind{i};
+     % Convert the tag to a valid MATLAB field name
+    validFieldName = matlab.lang.makeValidName(tag);
     fprintf('Tag: %s, IDs: ', tag);
-    disp(foundTags.(tag));   
-    if isfield(foundTags, tag) && ~isempty(foundTags.(tag))
-        allIds = [allIds, foundTags.(tag)];
+    if isfield(foundTags, validFieldName) && ~isempty(foundTags.(validFieldName))
+        disp(foundTags.(validFieldName)); 
+        allIds = [allIds, foundTags.(validFieldName)];        
+    else
+        fprintf('None\n\n');         
     end
 end
 
 
 event_start = '2017-01-01 00:00:00';
-event_end = '2017-05-28 23:23:59';
+event_end = '2017-02-28 23:23:59';
 
 data_source = ['Provider 9'];
 event_tag_ids = allIds;

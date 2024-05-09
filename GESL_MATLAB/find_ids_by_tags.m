@@ -6,7 +6,10 @@ function tagsFoundStruct = find_ids_by_tags(data, tagsToFind, requiredAncestorTa
 
     tagsFound = struct();
     for i = 1:length(tagsToFind)
-        tagsFound.(tagsToFind{i}) = [];
+        % tagsFound.(tagsToFind{i}) = [];
+        % Convert tag to a valid MATLAB structure field name
+        validFieldName = matlab.lang.makeValidName(tagsToFind{i});
+        tagsFound.(validFieldName) = [];
     end
 
     function searchStruct(structData, ancestors)
@@ -25,12 +28,14 @@ function tagsFoundStruct = find_ids_by_tags(data, tagsToFind, requiredAncestorTa
         newAncestors = ancestors;
         if isfield(structData, 'tag') && ischar(structData.tag)
             newAncestors = [newAncestors, structData.tag]; % Update ancestors
+            validFieldName = matlab.lang.makeValidName(structData.tag);
             if ismember(structData.tag, tagsToFind)
                 if isempty(requiredAncestorTags) || ...
                         all(ismember(requiredAncestorTags, newAncestors))
                     id = structData.id; % Assuming 'id' is present
-                    currentTag = structData.tag;
-                    tagsFound.(currentTag) = [tagsFound.(currentTag), id];
+                    %currentTag = structData.tag;
+                    %tagsFound.(currentTag) = [tagsFound.(currentTag), id];
+                    tagsFound.(validFieldName) = [tagsFound.(validFieldName), id];
                 end
             end
         end
