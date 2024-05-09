@@ -133,7 +133,7 @@ namespace sig_lib
             }
 
             
-
+            
             var response = client.PostAsync(url, content).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -179,6 +179,7 @@ namespace sig_lib
                 ["eventstart"] = eventStart,
                 ["eventend"] = eventEnd,
                 ["output"] = "sigids"
+
             };
 
             if (dataSensor != null && dataSensor.Any())
