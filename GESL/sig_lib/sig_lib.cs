@@ -38,12 +38,16 @@ namespace sig_lib
 
         private static string RequestData(object parameters, string proxyUrl = null)
         {
-            string jsonInputParams = JsonSerializer.Serialize(parameters, new JsonSerializerOptions { WriteIndented = true });
-
-            // Handle proxy setup if needed
-
-            var response = client.PostAsync(url, new StringContent(jsonInputParams, System.Text.Encoding.UTF8, "application/json")).Result;
-            return response.Content.ReadAsStringAsync().Result;
+            try
+            {
+                string jsonInputParams = JsonSerializer.Serialize(parameters, new JsonSerializerOptions { WriteIndented = true });
+                var response = client.PostAsync(url, new StringContent(jsonInputParams, System.Text.Encoding.UTF8, "application/json")).Result;
+                return response.Content.ReadAsStringAsync().Result;
+            }
+            catch (Exception ex)
+            {                
+                return $"Error: {ex.Message}";
+            }
         }
 
         private static string ValidateApiInput(string email, string apiKey)
@@ -158,7 +162,7 @@ namespace sig_lib
             string email, string apiKey,
             List<int>? eventTypeIds = null, List<int>? eventTagIds = null, List<string>? dataSource = null,
             List<string>? dataSite = null, List<string>? dataSensor = null,
-            string eventType = "", string eventStart = "", string eventEnd = "",
+            string eventType = "", string eventStart = "", string eventEnd = "", string sigtype = "event",
             string? proxyUrl = null)
         {
             string notValid = ValidateApiInput(email, apiKey);
@@ -173,14 +177,21 @@ namespace sig_lib
             {
                 ["email"] = email,
                 ["apikey"] = apiKey,
-               
-                ["eventtagid"] = eventTagIds ?? new List<int>(),                 
+
+               //["eventtagid"] = eventTagIds  ?? new List<int>(),                 
                // ["eventtype"] = eventType,
                 ["eventstart"] = eventStart,
                 ["eventend"] = eventEnd,
+                ["sigtype"] = sigtype,
                 ["output"] = "sigids"
 
             };
+
+            if (eventTagIds != null && eventTagIds.Any())
+            {
+                requestParams["eventtagid"] = eventTagIds;
+            }
+
 
             if (dataSensor != null && dataSensor.Any())
             {

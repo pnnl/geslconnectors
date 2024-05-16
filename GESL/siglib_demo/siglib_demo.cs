@@ -39,7 +39,7 @@ namespace sig_lib
             string eventStart = "2017-01-01 00:00:00"; 
             string eventEnd = "2017-02-28 23:23:59"; 
 
-            List<string> sig_ids = Sig_Lib.GetEventIds(email, apikey, null, eventTagIds, data_source, null, null, null, eventStart, eventEnd, proxy);
+            List<string> sig_ids = Sig_Lib.GetEventIds(email, apikey, null, eventTagIds, data_source, null, null, null, eventStart, eventEnd,"event", proxy);
 
             Console.WriteLine("ID results:");
             Console.WriteLine(string.Join(Environment.NewLine, sig_ids));
