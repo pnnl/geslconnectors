@@ -38,10 +38,10 @@ end
 
 ## Description of the connectors
 ### C#
-The Visual Studio solution consists of two projects:
+The Visual Studio solution consists of three projects:
 - `sig_lib` - A library (DLL) that includes functions to interact with the GESL API.
 - `siglib_demo` - A demo project showing how to use the library functions.
-
+- `GESL_reader` - A GUI built on top of the `sig_lib` library. If you do not need the source code, you can download the executable files only using this [link](https://github.com/pnnl/geslconnectors/blob/master/GESL/Executable/gesl_reader.zip).
 ### MATLAB
 
 The MATLAB folder includes a set of functions:
