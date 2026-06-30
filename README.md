@@ -1,3 +1,8 @@
+> [!IMPORTANT]
+> This repository has been archived and is no longer maintained.
+> The code is provided for historical reference and may contain unpatched or unknown vulnerabilities.
+> It should not be used in production systems.
+
 # GESL_connectors
 
 Welcome to GESL_connectors! This tool allows you to seamlessly integrate GESL's APIs into your C# or MATLAB projects. Before you can begin, you'll need to obtain an API key by registering with the GESL platform.
